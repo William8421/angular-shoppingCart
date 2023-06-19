@@ -1,0 +1,18 @@
+<div class="store-container">
+    <div *ngIf="response" class="shopping-item">
+        <div class="item-container" *ngFor="let item of response">
+            <img src="{{item.imgUrl}}" />
+            <div class="item-info">
+                <h3>{{item.itemName}}</h3>
+                <span class="item-price"> {{item.price | currency: "EUR"}} </span>
+            </div>
+            <button class="main-button">Add to cart</button>
+        </div>
+    </div>
+    <div *ngIf="!response">
+        <div class="loading-container">
+            <img src="/assets/images/blue_spinner.gif" alt="loading"/>
+        </div>
+    </div>
+
+</div>

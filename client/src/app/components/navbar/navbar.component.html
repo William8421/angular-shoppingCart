@@ -1,0 +1,33 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="navbar-container">
+    <div class="navbar-sub-container">
+        <div class='bar-button' (click)="Switcher()">
+            <div class="bar top {{burger}}"></div>
+            <div class="bar middle {{burger}}"></div>
+            <div class="bar bottom {{burger}}"></div>
+          </div>
+            <div class='pages'>
+            <div class=" burger-menu {{(menu)}}">
+              <div class='routes-container'>
+                <a routerLink=""><button (click)="Switcher()" >Home</button></a>
+                <a routerLink="store"><button (click)="Switcher()" >Store</button></a>
+                <a routerLink="about"><button (click)="Switcher()" >About</button></a>
+              </div>
+              <div *ngIf="!ngDoCheck()" class='signUp-login-container'>
+                 <a routerLink="login"><button (click)="Switcher()">Login</button></a>
+                <a routerLink="signup"><button (click)="Switcher()">Sign Up</button></a>
+              </div>
+              <div *ngIf="ngDoCheck()" class='signUp-login-container'><button (click)="logOut()" >Logout</button></div>
+        </div>
+          </div>
+      </div>
+        <a routerLink="">
+          <h1>Shopping App</h1>
+        </a>
+        <div class="cart-button-div">
+            <button class="cart-button">
+                <mat-icon class="cart-icon">shopping_cart</mat-icon>
+            </button>
+            <div class="shopping-cart">1</div>
+        </div>
+  </div>

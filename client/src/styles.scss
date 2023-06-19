@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: url(assets/images/background2croped.jpg) center /cover no-repeat;
+    min-height: 100vh;
+    .main-button{
+        color: #131763;
+        background-color: #cd729c;
+        border-radius: 6px;
+        font-size: 1.2rem;
+        padding: .2rem .4rem;
+    }
+}
