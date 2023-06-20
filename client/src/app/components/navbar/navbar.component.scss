@@ -1,14 +1,15 @@
 .navbar-container{
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
     background-color: #cd729c;
     margin-bottom: .5rem;
     position: fixed;
+    gap: 4rem;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10000;
+    z-index: 100;
     a{
         text-decoration: none;
         h1{

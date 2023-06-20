@@ -1,5 +1,6 @@
-import { Component, DoCheck } from '@angular/core';
+import { Component, DoCheck, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements DoCheck {
-  constructor(private route: Router) {}
+  constructor(private route: Router, public service: UserService) {}
 
   ngDoCheck() {
     if (localStorage.getItem('token')) {

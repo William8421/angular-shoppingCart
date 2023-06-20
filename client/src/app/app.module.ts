@@ -13,7 +13,6 @@ import { MaterialModule } from 'src/Material.Module';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { CartComponent } from './store/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { CartComponent } from './store/cart/cart.component';
     NavbarComponent,
     LoginComponent,
     SignUpComponent,
-    CartComponent,
   ],
   imports: [
     BrowserModule,
