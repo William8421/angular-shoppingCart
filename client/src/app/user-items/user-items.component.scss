@@ -1,0 +1,138 @@
+.my-items-container {
+    .my-items-sub-container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        .my-items-item-container {
+            background-color: white;
+            margin: 1rem;
+            padding: 1rem;
+            border-radius: 16px;
+
+            img {
+                width: 200px;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 6px;
+            }
+
+            .my-items-name-price-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                span {
+                    color: grey;
+                }
+            }
+
+            .edit-item-button-container {
+                margin: 1rem;
+            }
+        }
+    }
+
+    .no-items-yet {
+        margin: 1rem;
+    }
+}
+
+.delete-modal {
+    display: none;
+}
+
+.delete-item-hidden-div.delete-open {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: .2;
+}
+
+.delete-modal.delete-open {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 250px;
+    z-index: 100;
+    border-radius: 16px;
+
+    .delete-modal-header {
+        background-color: #cd729c;
+        width: 100%;
+        text-align: center;
+        font-size: 1.5rem;
+        border-radius: 16px 16px 0 0;
+    }
+
+    .confirmation {
+        font-size: 1.5rem;
+        color: red;
+        width: 70%;
+    }
+
+    .delete-modal-buttons-container {
+        display: flex;
+        gap: 1rem;
+
+        button {
+            margin-bottom: .5rem;
+        }
+    }
+}
+
+.add-item-modal {
+    display: none;
+}
+
+.add-item-hidden-div.add-item-open {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: .5;
+    border-radius: 6px;
+}
+
+.add-item-open.add-item-open {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .add-item-container {
+        border: solid 1px red;
+
+        .add-item-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+    }
+}
+
+.mdc-card {
+    width: 300px;
+    height: 400px;
+}
+
+.mat-mdc-card-title {
+    background-color: #cd729c;
+}
+
+.form-container {
+    margin-top: 2rem;
+}

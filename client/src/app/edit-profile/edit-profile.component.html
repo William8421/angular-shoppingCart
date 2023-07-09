@@ -1,0 +1,27 @@
+<div class="edit-profile-container" *ngFor="let userInfo of oldUserInfo">
+    <mat-card>
+        <mat-card-title>Edit Profile</mat-card-title>
+        <mat-card-content>
+            <form class=" example-form" #newData="ngForm" (submit)="editInfo(newData)">
+                <mat-form-field class="example-full-width">
+                    <mat-label>UserName</mat-label>
+                    <input matInput placeholder={{oldUserInfo[0].username}} name="username" type="text" ngModel>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>First Name</mat-label>
+                    <input matInput placeholder={{oldUserInfo[0].firstName}} name="firstName" type="text" ngModel>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput placeholder={{oldUserInfo[0].lastName}} name="lastName" type="text" ngModel>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button color="primary">Save</button>
+                    <a mat-raised-button style="margin: 5px" color="warn" (click)="backToProfile()">Cancel</a>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

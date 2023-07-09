@@ -1,0 +1,25 @@
+<div class="myProfile-container">
+    <h2>My Information</h2>
+    <div class="my-info-container" *ngFor="let item of userInfo">
+        <div class="info">
+            <span>Username:</span>
+            <span>{{item.username}}</span>
+        </div>
+        <div class="info">
+            <span>First Name:</span>
+            <span>{{item.firstName}}</span>
+        </div>
+        <div class="info">
+            <span>Last Name</span>
+            <span>{{item.lastName}}</span>
+        </div>
+        <div class="info">
+            <span>Email:</span>
+            <span>{{item.email}}</span>
+        </div>
+    </div>
+    <button class="main-button" (click)="editProfile()">Edit profile</button>
+    <div>
+        <app-user-items></app-user-items>
+    </div>
+</div>

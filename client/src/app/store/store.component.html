@@ -1,17 +1,40 @@
 <div class="store-container">
-    <div *ngIf="response" class="shopping-item">
-        <div class="item-container" *ngFor="let item of response">
-            <img src="{{item.imgUrl}}" />
-            <div class="item-info">
-                <h3>{{item.itemName}}</h3>
-                <span class="item-price"> {{item.price | currency: "EUR"}} </span>
+    <div class="shopping-items">
+        <div *ngFor="let item of items">
+            <div class="item-container">
+                <img src="{{ item.imgUrl }}" />
+                <div class="item-info">
+                    <h3>
+                        {{ item.itemName }}
+                    </h3>
+                    <span class="item-price"> {{ item.price | currency: "EUR" }} </span>
+                </div>
+                <div *ngIf="!item.quantity">
+                    <button class="main-button" (click)="addToCart(item)">
+                        Add to Cart
+                    </button>
+                </div>
+                <div *ngIf="item.quantity > 0">
+                    <div>
+                        <button class="increase-decrease-buttons" (click)="decreaseQuantity(item)">
+                            -
+                        </button>
+                        {{ item.quantity }} in Cart
+                        <button class="increase-decrease-buttons" (click)="increaseQuantity(item)">
+                            +
+                        </button>
+
+                    </div>
+                    <div class="remove-button">
+                        <button (click)="removeFromCart(item)" class="main-button">Remove</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div *ngIf="!response">
-        <div class="loading-container">
-            <img src="/assets/images/blue_spinner.gif" alt="loading"/>
-        </div>
+</div>
+<div *ngIf="!items">
+    <div class="loading-container">
+        <img src="/assets/images/blue_spinner.gif" alt="loading" />
     </div>
-
 </div>

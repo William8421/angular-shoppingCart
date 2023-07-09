@@ -13,14 +13,16 @@ export class SignUpComponent implements OnInit {
 
   response: any;
 
+  hide = true;
+
   register(signUpData: any) {
     if (signUpData.valid) {
       this.service.register(signUpData.value).subscribe({
         next: (item: any) => {
           this.response = item;
           if (this.response.token) {
-            localStorage.setItem('token', this.response.token);
-            this.route.navigate(['']);
+            localStorage.setItem('user', JSON.stringify({token: this.response.token, id: this.response.user.id, username: this.response.user.username}));
+            this.route.navigate(['myprofile']);
           }
         },
         error(Err) {

@@ -1,0 +1,60 @@
+<div class="my-items-container">
+    <div class="my-items-sub-container" *ngFor="let item of userItems">
+        <div class="my-items-item-container">
+            <img src={{item.imgUrl}} />
+            <div class="my-items-name-price-container">
+                <h3>{{item.itemName}}</h3>
+                <span class="item-price">{{item.price | currency: "EUR"}}</span>
+            </div>
+            <div class="edit-item-button-container">
+                <button class="main-button">Edit item</button>
+            </div>
+            <div class="delete-item-container">
+                <button (click)="openDeleteModal(item)" class="main-button">Delete item</button>
+            </div>
+        </div>
+        <div class="delete-item-hidden-div" [class.delete-open]="openCloseDeleteModal"></div>
+        <div class="delete-modal" [class.delete-open]="openCloseDeleteModal">
+            <div class="delete-modal-header">
+                <h3>Delete</h3>
+            </div>
+            <div class="confirmation">Are you sure you want to delete
+                the item "{{selectedItem.itemName}}"?</div>
+            <div class="delete-modal-buttons-container">
+                <button mat-raised-button color="primary" (click)=" deleteItem()">Delete</button>
+                <button mat-raised-button color="warn" (click)="openDeleteModal(item)">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <button class="main-button" (click)="openAddModal()">Add item</button>
+    <div class="add-item-hidden-div" [class.add-item-open]="openCloseAddItemModal"></div>
+    <div class="add-item-modal" [class.add-item-open]="openCloseAddItemModal">
+        <div class="add-item-container">
+            <mat-card>
+                <mat-card-title>Add item</mat-card-title>
+                <mat-card-content class="form-container">
+                    <form #newItem="ngForm" (submit)="addItem(newItem)">
+                        <mat-form-field>
+                            <mat-label>Item Name</mat-label>
+                            <input matInput placeholder="Item name" name="itemName" type="text" required ngModel>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Price</mat-label>
+                            <input matInput placeholder="Price" name="price" type="number" required ngModel>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Item image</mat-label>
+                            <input matInput placeholder="Choose file" name="imgUrl" type="text" required ngModel>
+                        </mat-form-field>
+                    </form>
+                    <div class="add-item-buttons-container">
+                        <button mat-raised-button color="primary" (click)="addItem(newItem)">Save</button>
+                        <button mat-raised-button color="warn" (click)="openAddModal()">Cancel</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

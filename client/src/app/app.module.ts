@@ -13,6 +13,10 @@ import { MaterialModule } from 'src/Material.Module';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { CartComponent } from './components/cart/cart.component';
+import { UserComponent } from './user/user.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { UserItemsComponent } from './user-items/user-items.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,10 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     LoginComponent,
     SignUpComponent,
+    CartComponent,
+    UserComponent,
+    EditProfileComponent,
+    UserItemsComponent,
   ],
   imports: [
     BrowserModule,

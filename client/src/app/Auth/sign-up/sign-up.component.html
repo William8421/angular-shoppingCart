@@ -3,37 +3,47 @@
         <mat-card-title>Register</mat-card-title>
         <mat-card-content>
             <form class="example-form" #registerForm="ngForm" (submit)="register(registerForm)">
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Username</mat-label>
-                        <input matInput placeholder="Username" name="username" type="text" required ngModel>
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>First Name</mat-label>
-                        <input matInput placeholder="First Name" name="firstName" type="text" required ngModel>
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Last Name</mat-label>
-                        <input matInput placeholder="Last Name" name="lastName" type="text" required ngModel>
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Email</mat-label>
-                        <input matInput placeholder="Email" name="email" type="email" required ngModel>
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Password</mat-label>
-                        <input matInput placeholder="Password" name="password" autocomplete type="password" required ngModel>
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Confirm Password</mat-label>
-                        <input matInput placeholder="Confirm Password" name="confirmPassword" autocomplete type="password" required ngModel>
-                    </mat-form-field>
-                    <div>
-                      <button mat-raised-button color="primary" type="submit">Register</button>
-      
-                      <a mat-raised-button style="margin: 5px" color="warn" (click)="RedirectLogin()">login</a>
-                    </div>
-              </form>
-              
+                <mat-form-field class="example-full-width">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Username" name="username" type="text" required ngModel>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>First Name</mat-label>
+                    <input matInput placeholder="First Name" name="firstName" type="text" required ngModel>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput placeholder="Last Name" name="lastName" type="text" required ngModel>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" name="email" type="email" required ngModel>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Password" name="password" autocomplete
+                        [type]="hide ? 'password' : 'text'" required ngModel>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput placeholder="Confirm Password" name="confirmPassword" autocomplete
+                        [type]="hide ? 'password' : 'text'" required ngModel>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button color="primary" type="submit">Register</button>
+
+                    <a mat-raised-button style="margin: 5px" color="warn" (click)="RedirectLogin()">login</a>
+                </div>
+            </form>
+
         </mat-card-content>
-  </mat-card>
+    </mat-card>
 </div>

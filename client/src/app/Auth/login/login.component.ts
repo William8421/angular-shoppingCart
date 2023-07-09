@@ -14,17 +14,24 @@ export class LoginComponent implements OnInit {
 
   response: any;
 
-  title = 'something';
+  hide = true;
 
   login(loginData: any) {
+    
     if (loginData.valid) {
       this.service.sigIn(loginData.value).subscribe({
         next: (item: any) => {
           this.response = item;
 
           if (this.response) {
-            localStorage.setItem('token', this.response.token);
-            this.route.navigate(['']);
+            const userStorage = {
+              username: this.response.user.username,
+              token: this.response.token,
+              id: this.response.user.id
+            }
+            
+            localStorage.setItem('user', JSON.stringify(userStorage));
+            this.route.navigate(['myprofile']);
           }
         },
         error(Err: { error: { msg: string } }) {

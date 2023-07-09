@@ -1,0 +1,31 @@
+<div class="cart">
+    <div class="cart-header">
+        <h2>Cart</h2>
+        <button class="close-cart-button" (click)="toggleCart()">X</button>
+    </div>
+    <div class="cart-items-container">
+        <div *ngFor="let item of cartItems">
+            <div class="item-container">
+                <img src="{{ item.imgUrl }}" />
+                <div class="name-quantity">
+                    <div class="cart-item-name">
+                        {{ item.itemName }}
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button class="increase-decrease-buttons" (click)="decreaseQuantity(item)">-</button>
+                        {{ item.quantity }}
+                        <button class="increase-decrease-buttons" (click)="increaseQuantity(item)">+</button>
+                    </div>
+                </div>
+                <div class="price-total">
+                    <div class="cart-item-price">
+                        {{ item.price | currency: "EUR"}} €
+                    </div>
+                    <div class="cart-item-total">
+                        {{item.price * item.quantity | currency: "EUR"}} €
+                    </div>
+                </div>
+                <button class="main-button" (click)="removeFromCart(item)">Remove</button>
+            </div>
+        </div>
+    </div>
