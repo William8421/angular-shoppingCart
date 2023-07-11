@@ -40,7 +40,7 @@
       <span class="cart-quantity" *ngIf="cartQuantity > 0">{{ cartQuantity }}</span>
     </button>
     <div class="offcanvas" [class.cart-open]="showCart">
-      <app-cart></app-cart>
+      <app-cart (closeCart)="showCart = false"></app-cart>
     </div>
   </div>
 </div>

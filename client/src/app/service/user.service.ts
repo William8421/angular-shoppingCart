@@ -62,4 +62,10 @@ export class UserService {
     )
   }
 
+  updateItem(item: any){
+    return this.http.post(
+      'https://shopping-cart-server-chi.vercel.app/items/updateitem', item
+    )
+  }
+
 }

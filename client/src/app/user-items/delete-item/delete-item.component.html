@@ -1,0 +1,9 @@
+<div class="delete-modal-header">
+    <h3>Delete</h3>
+</div>
+<div class="confirmation">Are you sure you want to delete
+    the item "{{selectedItem.itemName}}"?</div>
+<div class="delete-modal-buttons-container">
+    <button mat-raised-button color="primary" (click)=" deleteItem()">Delete</button>
+    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+</div>

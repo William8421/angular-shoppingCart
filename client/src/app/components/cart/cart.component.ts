@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CartService } from '../../service/cart.service';
-import { NavbarComponent } from '../navbar/navbar.component';
 import { Product } from '../../service/cart.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { Product } from '../../service/cart.service';
 export class CartComponent implements OnInit {
   cartItems!: any[];
 
-  constructor(private cartService: CartService, private navbar: NavbarComponent) {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.cartService.cartItems.subscribe((items) => {
@@ -38,7 +37,10 @@ export class CartComponent implements OnInit {
       product.quantity = 0;
     }
   }
+  @Output() closeCart : EventEmitter<void> = new EventEmitter<void>()
+
+
   toggleCart(){
-    this.navbar.toggleCart()
+    this.closeCart.emit()
   }
 }

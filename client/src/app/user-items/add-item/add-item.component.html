@@ -1,0 +1,27 @@
+<div class="add-item-container">
+    <mat-card>
+        <mat-card-title>Add item</mat-card-title>
+        <mat-card-content class="form-container">
+            <form #newItem="ngForm" (submit)="addItem(newItem)">
+                <mat-form-field>
+                    <mat-label>Item Name</mat-label>
+                    <input matInput placeholder="Item name" name="itemName" type="text" required ngModel>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Price</mat-label>
+                    <input matInput placeholder="Price" name="price" type="number" required ngModel>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Item image</mat-label>
+                    <input matInput placeholder="Choose file" name="imgUrl" type="text" required ngModel>
+                </mat-form-field>
+            </form>
+            <div class="add-item-buttons-container">
+                <button mat-raised-button color="primary" (click)="addItem(newItem)">Save</button>
+                <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

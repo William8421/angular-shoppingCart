@@ -18,7 +18,12 @@
             <span>{{item.email}}</span>
         </div>
     </div>
-    <button class="main-button" (click)="editProfile()">Edit profile</button>
+    <button class="main-button" (click)="openEditProfileModal()">Edit profile</button>
+    <div class="edit-profile-hidden-div" [class.edit-profile-open]="openCloseEditProfileModal"></div>
+    <div class="edit-profile-modal" [class.edit-profile-open]="openCloseEditProfileModal">
+        <app-edit-profile (closeModal)="openCloseEditProfileModal = false"
+            (userInfoUpdated)="getUserInfo()"></app-edit-profile>
+    </div>
     <div>
         <app-user-items></app-user-items>
     </div>

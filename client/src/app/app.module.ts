@@ -15,8 +15,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
 import { UserComponent } from './user/user.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { UserItemsComponent } from './user-items/user-items.component';
+import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
+import { AddItemComponent } from './user-items/add-item/add-item.component';
+import { DeleteItemComponent } from './user-items/delete-item/delete-item.component';
+import { UpdateItemComponent } from './user-items/update-item/update-item.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +32,11 @@ import { UserItemsComponent } from './user-items/user-items.component';
     SignUpComponent,
     CartComponent,
     UserComponent,
-    EditProfileComponent,
     UserItemsComponent,
+    EditProfileComponent,
+    AddItemComponent,
+    DeleteItemComponent,
+    UpdateItemComponent,
   ],
   imports: [
     BrowserModule,

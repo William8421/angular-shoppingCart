@@ -1,0 +1,27 @@
+<div class="update-item-container">
+    <mat-card>
+        <mat-card-title>Update item</mat-card-title>
+        <mat-card-content>
+            <form #selectedItemUpdate="ngForm" (submit)="updateItem(selectedItemUpdate)">
+                <mat-form-field>
+                    <mat-label>Item Name</mat-label>
+                    <input matInput placeholder="Item name" name="updateItemName" type="text" ngModel>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Price</mat-label>
+                    <input matInput placeholder="Price" name="updatePrice" type="number" ngModel>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Item image</mat-label>
+                    <input matInput placeholder="image link" name="updateImgUrl" type="text" ngModel>
+                </mat-form-field>
+            </form>
+            <div class="update-item-buttons-container">
+                <button mat-raised-button color="primary" (click)="updateItem(selectedItemUpdate)">Save</button>
+                <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

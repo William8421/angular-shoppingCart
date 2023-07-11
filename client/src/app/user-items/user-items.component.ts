@@ -1,6 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
-import { Router } from '@angular/router';
+
+type UserItem = {
+  itemId: number;
+  itemName: string;
+  price: number;
+  imgUrl: string;
+  owner?: number;
+}
 
 @Component({
   selector: 'app-user-items',
@@ -9,61 +16,62 @@ import { Router } from '@angular/router';
 })
 export class UserItemsComponent implements OnInit {
 
-  constructor(private userService: UserService, private route: Router){}
-  
-  user = this.userService.isLoggedIn()  
-  userItems: any
+  userItems: UserItem[] = [];
+  @Input() selectedItem: UserItem = {
+    itemId: 0,
+    itemName: '',
+    price: 0,
+    imgUrl: ''
+  } ;
+  openCloseDeleteModal = false;
+  openCloseAddItemModal = false;
+  openCloseUpdateItemModal = false;
 
-  openCloseDeleteModal: boolean = false
-  selectedItem: any = {}
-  
-  openCloseAddItemModal: boolean = false 
+  constructor(private userService: UserService) {}
 
-  
+  user = this.userService.isLoggedIn()
+
   ngOnInit(): void {
-    this.loadUserItems()    
+    this.loadUserItems();
   }
+
 
   loadUserItems(): void {
-    this.userService.userItems(this.user).subscribe((items) => {
+    this.userService.userItems(this.user).subscribe((items: any) => {
       this.userItems = items;
-    })    
+      
+    });    
   }
 
-  openDeleteModal(item: any){
-    this.openCloseDeleteModal = !this.openCloseDeleteModal
-    this.selectedItem = item    
+  openDeleteModal(item: any): void {
+    this.openCloseDeleteModal = !this.openCloseDeleteModal;
+    this.selectedItem = item;
+    
   }
 
-  openAddModal(){
-    this.openCloseAddItemModal = !this.openCloseAddItemModal
+  openAddModal(): void {
+    this.openCloseAddItemModal = !this.openCloseAddItemModal;
   }
 
-  deleteItem(){    
-    this.userService.removeItem(this.selectedItem).subscribe(() => {
-      this.loadUserItems()
-    })
-    this.openCloseDeleteModal = false
+  openUpdateItemModal(item: any): void {
+    this.openCloseUpdateItemModal = !this.openCloseUpdateItemModal;
+    this.selectedItem = item;
+       
   }
 
-  addItem(newItem: any){
-    if(newItem.valid){
-      newItem = {
-        userId: this.user.id,
-        itemName: newItem.value.itemName,
-        price: newItem.value.price,
-        imgUrl: newItem.value.imgUrl
-      }
-      this.userService.addItem(newItem).subscribe(() => {
-        this.loadUserItems()
-      })
-      this.openCloseAddItemModal = false
-    }
-  }
-
-  
-
-  redirectAddItem(){
-    this.route.navigate(['additem'])
-  }
+  // addItem(newItem: any): void {
+  //   if (newItem.valid) {
+  //     const user = this.userService.isLoggedIn();
+  //     const itemData = {
+  //       userId: user.id,
+  //       itemName: newItem.value.itemName,
+  //       price: newItem.value.price,
+  //       imgUrl: newItem.value.imgUrl
+  //     };
+  //     this.userService.addItem(itemData).subscribe(() => {
+  //       this.loadUserItems();
+  //     });
+  //     this.openCloseAddItemModal = false;
+  //   }
+  // }
 }
