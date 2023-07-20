@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
+import { UserInfoProps } from '../models';
 
 @Component({
   selector: 'app-user',
@@ -7,29 +8,31 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-
-  userInfo: any = [];
+  userInfo: UserInfoProps = {
+    id: 0,
+    username: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+  };
+  openCloseEditProfileModal = false;
 
   constructor(private userService: UserService) {}
 
-  openCloseEditProfileModal = false;
-
   ngOnInit(): void {
     this.getUserInfo();
+    
   }
 
-  openEditProfileModal(): void {
+  toggleEditProfileModal(): void {
     this.openCloseEditProfileModal = !this.openCloseEditProfileModal;
   }
 
   getUserInfo(): void {
     const user = this.userService.isLoggedIn();
-    this.userService.getUserInfo(user).subscribe((item) => {
+    this.userService.getUserInfo(user).subscribe((item: UserInfoProps) => {
       this.userInfo = item;
     });
   }
-
-  // handleUserInfoUpdated(updatedUserInfo: any): void {
-  //   this.userInfo = updatedUserInfo;
-  // }
 }

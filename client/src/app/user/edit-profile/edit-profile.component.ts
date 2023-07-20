@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UserService } from '../../service/user.service';
+import { UserInfoProps } from 'src/app/models';
 
 @Component({
   selector: 'app-edit-profile',
@@ -8,22 +9,28 @@ import { UserService } from '../../service/user.service';
 })
 export class EditProfileComponent implements OnInit {
 
-  oldUserInfo: any = [];
+  oldUserInfo: UserInfoProps = {
+    id: 0,
+    username: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+  };
 
-  user: any;
+  user = this.userService.isLoggedIn();
 
   @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
-  @Output() userInfoUpdated: EventEmitter<any> = new EventEmitter<any>();
+  @Output() userInfoUpdated: EventEmitter<UserInfoProps> = new EventEmitter<UserInfoProps>();
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.user = this.userService.isLoggedIn();
     this.getUserInfo();
   }
 
   getUserInfo(): void {
-    this.userService.getUserInfo(this.user).subscribe((item) => {
+    this.userService.getUserInfo(this.user).subscribe((item: UserInfoProps) => {
       this.oldUserInfo = item;
     });
   }
@@ -31,9 +38,9 @@ export class EditProfileComponent implements OnInit {
   editInfo(newData: any): void {
     newData = {
       id: this.user.id,
-      username: newData.value.username || this.oldUserInfo[0].username,
-      firstName: newData.value.firstName || this.oldUserInfo[0].firstName,
-      lastName: newData.value.lastName || this.oldUserInfo[0].lastName
+      username: newData.value.username || this.oldUserInfo.username,
+      firstName: newData.value.firstName || this.oldUserInfo.firstName,
+      lastName: newData.value.lastName || this.oldUserInfo.lastName
     };
 
     this.userService.editUserInfo(newData).subscribe(() => {

@@ -1,27 +1,36 @@
 <div class="add-item-container">
-    <mat-card>
-        <mat-card-title>Add item</mat-card-title>
-        <mat-card-content class="form-container">
-            <form #newItem="ngForm" (submit)="addItem(newItem)">
-                <mat-form-field>
-                    <mat-label>Item Name</mat-label>
-                    <input matInput placeholder="Item name" name="itemName" type="text" required ngModel>
-                </mat-form-field>
 
-                <mat-form-field>
-                    <mat-label>Price</mat-label>
-                    <input matInput placeholder="Price" name="price" type="number" required ngModel>
-                </mat-form-field>
-
-                <mat-form-field>
-                    <mat-label>Item image</mat-label>
-                    <input matInput placeholder="Choose file" name="imgUrl" type="text" required ngModel>
-                </mat-form-field>
-            </form>
-            <div class="add-item-buttons-container">
-                <button mat-raised-button color="primary" (click)="addItem(newItem)">Save</button>
-                <button mat-raised-button color="warn" (click)="close()">Cancel</button>
+    <div class='add-item-header'>
+        <h2>Add Item</h2>
+        <button class='close-button' (click)="close()">X</button>
+    </div>
+    <form #newItem="ngForm" (submit)="addItem(newItem)" class="add-item-form">
+        <div>
+            Name
+            <input type="text" name="itemName" placeholder="Name" required="" ngModel />
+        </div>
+        <div>
+            Price
+            <input type="number" name="price" placeholder="Price" required="" ngModel />
+        </div>
+        <div class="choose-file">
+            Image
+            <input size="60" type="file" name="imgUrl" placeholder="Choose file" required=""
+                (change)="imageHandler($event)" ngModel />
+        </div>
+    </form>
+    <div class="add-item-footer">
+        <div *ngIf="imgSelected" class="upload-button-container">
+            <button (click)="uploadImage()" class="upload-button">Upload</button>
+        </div>
+        <div class="add-item-buttons-container">
+            <div *ngIf="uploaded">
+                <button (click)="addItem(newItem)" class="main-button">Save</button>
             </div>
-        </mat-card-content>
-    </mat-card>
+            <div *ngIf="!uploaded">
+                <button disabled class="disabled-button">Save</button>
+            </div>
+            <button (click)="close()" class="cancel-button">Cancel</button>
+        </div>
+    </div>
 </div>

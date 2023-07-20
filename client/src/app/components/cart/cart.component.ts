@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CartService } from '../../service/cart.service';
-import { Product } from '../../service/cart.service';
+import { CartItemProps } from 'src/app/models';
+import { UserService } from 'src/app/service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -8,39 +10,74 @@ import { Product } from '../../service/cart.service';
   styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  cartItems!: any[];
+  cartItems: CartItemProps[] = [];
+  items!: CartItemProps[];
 
-  constructor(private cartService: CartService) {}
+  
+  constructor(private cartService: CartService, private userService: UserService, private route: Router) {}
+  user = this.userService.isLoggedIn()
+
+  @Output() closeCart: EventEmitter<void> = new EventEmitter<void>();
+
+  @Output() cartQuantity: EventEmitter<void> = new EventEmitter<void>()
 
   ngOnInit(): void {
-    this.cartService.cartItems.subscribe((items) => {
+    this.cartService.cartItems.subscribe(items => {
       this.cartItems = items;
     });
+
+    this.userService.storeItems().subscribe((item: any) => {
+      this.items = item
+    })
+    
   }
 
-  removeFromCart(product: Product): void {
-    this.cartService.removeFromCart(product);
-    product.quantity = 0;
-  }
-
-  increaseQuantity(product: Product): void {
-    product.quantity++;
-    this.cartService.updateCartItem(product);    
-  }
-
-  decreaseQuantity(product: Product): void {
-    if (product.quantity > 1) {
-      product.quantity--;
-      this.cartService.updateCartItem(product);
-    }else {
-      this.removeFromCart(product);
-      product.quantity = 0;
+  updateCartItem(cartItem: CartItemProps, quantity: number): void {
+    cartItem.quantity += quantity;
+    if (cartItem.quantity < 1) {
+      this.removeFromCart(cartItem);
+    } else {
+      this.cartService.updateCartItem(cartItem);
     }
   }
-  @Output() closeCart : EventEmitter<void> = new EventEmitter<void>()
 
+  removeFromCart(cartItem: CartItemProps): void {
+    this.cartService.removeFromCart(cartItem);
+    cartItem.quantity = 0;
+  }
 
-  toggleCart(){
-    this.closeCart.emit()
+  emptyCart(){    
+    this.cartQuantity.emit();    
+    return this.cartItems = [];
+  }
+  
+
+  total(){
+
+    return this.cartItems.reduce((total, cartItem) => {
+      const item = this.items.find((i: any) => i.itemId === cartItem.itemId)
+      return total + (item?.price || 0) * cartItem.quantity 
+    }, 0)
+  } 
+
+  ngDoCheck(): boolean {
+    if (this.cartService.isLoggedIn()) {
+      return true;
+    }
+    return false;
+  }
+
+  checkout(){
+    if(!this.ngDoCheck()){
+      this.toggleCart()
+      return this.route.navigate(['login'])
+    }else{
+      this.toggleCart()
+      return this.route.navigate(['shipping'])
+    }
+  }
+
+  toggleCart(): void {
+    this.closeCart.emit();
   }
 }

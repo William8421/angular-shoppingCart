@@ -1,27 +1,29 @@
 <div class="update-item-container">
-    <mat-card>
-        <mat-card-title>Update item</mat-card-title>
-        <mat-card-content>
-            <form #selectedItemUpdate="ngForm" (submit)="updateItem(selectedItemUpdate)">
-                <mat-form-field>
-                    <mat-label>Item Name</mat-label>
-                    <input matInput placeholder="Item name" name="updateItemName" type="text" ngModel>
-                </mat-form-field>
-
-                <mat-form-field>
-                    <mat-label>Price</mat-label>
-                    <input matInput placeholder="Price" name="updatePrice" type="number" ngModel>
-                </mat-form-field>
-
-                <mat-form-field>
-                    <mat-label>Item image</mat-label>
-                    <input matInput placeholder="image link" name="updateImgUrl" type="text" ngModel>
-                </mat-form-field>
-            </form>
-            <div class="update-item-buttons-container">
-                <button mat-raised-button color="primary" (click)="updateItem(selectedItemUpdate)">Save</button>
-                <button mat-raised-button color="warn" (click)="close()">Cancel</button>
-            </div>
-        </mat-card-content>
-    </mat-card>
+    <div class='update-item-header'>
+        <h2>Update Item</h2>
+        <button class='close-button' (click)="close()">X</button>
+    </div>
+    <form #selectedItemUpdate="ngForm" (submit)="updateItem(selectedItemUpdate)" class="update-item-form">
+        <div>
+            New name
+            <input type="text" name="updateItemName" placeholder="Item name" ngModel />
+        </div>
+        <div>
+            new Price
+            <input type="number" name="updatePrice" placeholder="Price" ngModel />
+        </div>
+        <div>
+            New image
+            <input type="file" name="imgUrl" placeholder="Choose file" (change)="imageHandler($event)" ngModel />
+        </div>
+    </form>
+    <div class="update-item-button-container">
+        <div *ngIf="uploaded===''">
+            <button (click)=" uploadImage()" class="upload-button">Upload</button>
+        </div>
+        <div>
+            <button (click)="updateItem(selectedItemUpdate)" class="main-button">Save</button>
+        </div>
+        <button (click)="close()" class="cancel-button">Cancel</button>
+    </div>
 </div>

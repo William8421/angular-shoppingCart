@@ -8,6 +8,25 @@
     button {
         color: black;
     }
+
+    form {
+        max-width: 380px;
+
+        .login-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+    }
+
+    .error-message {
+        color: red;
+        width: 300px;
+        position: fixed;
+        top: 7%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
 }
 
 .ng-star-inserted {

@@ -1,24 +1,24 @@
 <div class="myProfile-container">
     <h2>My Information</h2>
-    <div class="my-info-container" *ngFor="let item of userInfo">
+    <div class="my-info-container">
         <div class="info">
             <span>Username:</span>
-            <span>{{item.username}}</span>
+            <span>{{userInfo.username}}</span>
         </div>
         <div class="info">
             <span>First Name:</span>
-            <span>{{item.firstName}}</span>
+            <span>{{userInfo.firstName}}</span>
         </div>
         <div class="info">
             <span>Last Name</span>
-            <span>{{item.lastName}}</span>
+            <span>{{userInfo.lastName}}</span>
         </div>
         <div class="info">
             <span>Email:</span>
-            <span>{{item.email}}</span>
+            <span>{{userInfo.email}}</span>
         </div>
     </div>
-    <button class="main-button" (click)="openEditProfileModal()">Edit profile</button>
+    <button class="main-button" (click)="toggleEditProfileModal()">Edit profile</button>
     <div class="edit-profile-hidden-div" [class.edit-profile-open]="openCloseEditProfileModal"></div>
     <div class="edit-profile-modal" [class.edit-profile-open]="openCloseEditProfileModal">
         <app-edit-profile (closeModal)="openCloseEditProfileModal = false"

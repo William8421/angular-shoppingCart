@@ -20,6 +20,7 @@ import { EditProfileComponent } from './user/edit-profile/edit-profile.component
 import { AddItemComponent } from './user-items/add-item/add-item.component';
 import { DeleteItemComponent } from './user-items/delete-item/delete-item.component';
 import { UpdateItemComponent } from './user-items/update-item/update-item.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { UpdateItemComponent } from './user-items/update-item/update-item.compon
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

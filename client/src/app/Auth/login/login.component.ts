@@ -8,34 +8,28 @@ import { UserService } from '../../service/user.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private service: UserService, private route: Router) {}
+  constructor(private userService: UserService, private route: Router) {}
 
   ngOnInit(): void {}
 
-  response: any;
-
   hide = true;
+  errorMessage: string = ''
 
   login(loginData: any) {
-    
     if (loginData.valid) {
-      this.service.sigIn(loginData.value).subscribe({
+      this.userService.sigIn(loginData.value).subscribe({
         next: (item: any) => {
-          this.response = item;
-
-          if (this.response) {
-            const userStorage = {
-              username: this.response.user.username,
-              token: this.response.token,
-              id: this.response.user.id
-            }
-            
-            localStorage.setItem('user', JSON.stringify(userStorage));
-            this.route.navigate(['myprofile']);
-          }
+          const { user, token } = item;
+          const userStorage = {
+            username: user.username,
+            token: token,
+            id: user.id,
+          };
+          localStorage.setItem('user', JSON.stringify(userStorage));
+          this.route.navigate(['myprofile']);
         },
-        error(Err: { error: { msg: string } }) {
-          alert(Err.error.msg);
+        error: (error: any) => {
+          this.errorMessage = error.error.msg
         },
       });
     }
@@ -44,4 +38,5 @@ export class LoginComponent implements OnInit {
   RedirectRegister() {
     this.route.navigate(['signup']);
   }
+
 }

@@ -1,4 +1,4 @@
-.signup-container {
+.sign-up-container {
     margin-top: 5rem;
     text-align: center;
     color: white;
@@ -7,6 +7,25 @@
 
     button {
         color: black;
+    }
+
+    form {
+        max-width: 380px;
+
+        .signup-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+    }
+
+    .error-message {
+        color: red;
+        width: 100%;
+        position: fixed;
+        top: 7%;
+        left: 50%;
+        transform: translate(-50%, 0%);
     }
 }
 

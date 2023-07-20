@@ -1,4 +1,4 @@
-import { Component, DoCheck, Input, OnInit, Output } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../../service/cart.service';
 
@@ -8,42 +8,45 @@ import { CartService } from '../../service/cart.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements DoCheck, OnInit {
-  cartQuantity!: number;
-  showCart: boolean = false;
-  userIcon = ''
+  cartQuantity = 0;
+  showCart = false;
+  userIcon = '';
+  burger = 'close';
+  menu = 'off';
+
   constructor(private route: Router, private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.cartService.cartQuantity.subscribe((quantity) => {
+    this.cartService.cartQuantity.subscribe(quantity => {
       this.cartQuantity = quantity;
     });
+    
   }
 
-  ngDoCheck() {
+  ngDoCheck(): boolean {
     if (this.cartService.isLoggedIn()) {
-      this.userIcon = this.cartService.isLoggedIn().username[0].toUpperCase()
+      this.userIcon = this.cartService.isLoggedIn().username[0].toUpperCase();
       return true;
     }
     return false;
   }
-  
-  
 
-  burger: string = 'close';
-  menu: string = 'off';
-
-  Switcher() {
-    this.burger === 'close' && this.menu === 'off'
-      ? ((this.burger = 'open'), (this.menu = 'on'))
-      : ((this.burger = 'close'), (this.menu = 'off'));
+  toggleSwitcher(): void {
+    this.burger = this.burger === 'close' ? 'open' : 'close';
+    this.menu = this.menu === 'off' ? 'on' : 'off';
   }
 
-  logOut() {
+  logOut(): void {
     localStorage.removeItem('user');
-    this.Switcher();
+    this.toggleSwitcher();
     this.route.navigate(['']);
   }
+
   toggleCart(): void {
     this.showCart = !this.showCart;
+  }
+  
+  emptyCart(){
+    this.cartQuantity = 0
   }
 }

@@ -1,25 +1,25 @@
-<div class="signup-container">
+<div class="sign-up-container">
     <mat-card>
         <mat-card-title>Register</mat-card-title>
         <mat-card-content>
-            <form class="example-form" #registerForm="ngForm" (submit)="register(registerForm)">
-                <mat-form-field class="example-full-width">
+            <form #registerForm="ngForm" (submit)="register(registerForm)">
+                <mat-form-field>
                     <mat-label>Username</mat-label>
                     <input matInput placeholder="Username" name="username" type="text" required ngModel>
                 </mat-form-field>
-                <mat-form-field class="example-full-width">
+                <mat-form-field>
                     <mat-label>First Name</mat-label>
                     <input matInput placeholder="First Name" name="firstName" type="text" required ngModel>
                 </mat-form-field>
-                <mat-form-field class="example-full-width">
+                <mat-form-field>
                     <mat-label>Last Name</mat-label>
                     <input matInput placeholder="Last Name" name="lastName" type="text" required ngModel>
                 </mat-form-field>
-                <mat-form-field class="example-full-width">
+                <mat-form-field>
                     <mat-label>Email</mat-label>
                     <input matInput placeholder="Email" name="email" type="email" required ngModel>
                 </mat-form-field>
-                <mat-form-field class="example-full-width">
+                <mat-form-field>
                     <mat-label>Password</mat-label>
                     <input matInput placeholder="Password" name="password" autocomplete
                         [type]="hide ? 'password' : 'text'" required ngModel>
@@ -28,7 +28,7 @@
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                 </mat-form-field>
-                <mat-form-field class="example-full-width">
+                <mat-form-field>
                     <mat-label>Confirm Password</mat-label>
                     <input matInput placeholder="Confirm Password" name="confirmPassword" autocomplete
                         [type]="hide ? 'password' : 'text'" required ngModel>
@@ -37,11 +37,12 @@
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                 </mat-form-field>
-                <div>
-                    <button mat-raised-button color="primary" type="submit">Register</button>
+                <div class="signup-buttons-container">
+                    <button class="main-button" type="submit">Register</button>
 
-                    <a mat-raised-button style="margin: 5px" color="warn" (click)="RedirectLogin()">login</a>
+                    <button class="cancel-button" (click)="RedirectLogin()">login</button>
                 </div>
+                <div class="error-message">{{errorMessage}}</div>
             </form>
 
         </mat-card-content>

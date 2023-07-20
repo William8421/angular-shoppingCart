@@ -1,23 +1,61 @@
-.home-container{
+.home-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     font-family: 'Lora', serif;
     height: 90vh;
     margin-top: 4rem;
-    .home-app-name{
+
+    .home-app-name {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 3rem;
-        margin-left: 1rem;
-        h2, h1{
-            text-shadow: 4px 4px 0 #c05abf, 4px 4px 0 #c05abf;
-            color: white;
+
+        h2,
+        h1 {
+            text-shadow: 4px 4px 0 white, 4px 4px 0 white;
+            color: #0D6EFD;
         }
     }
-    .start-shopping{
+
+    .start-shopping {
         color: #0D6EFD;
+        padding: .5rem;
         text-align: center;
-    }     
+        animation: wiggle 2s linear infinite;
+    }
+}
+
+@keyframes wiggle {
+
+    0%,
+    7% {
+        transform: rotateZ(0);
+    }
+
+    15% {
+        transform: rotateZ(-15deg);
+    }
+
+    20% {
+        transform: rotateZ(10deg);
+    }
+
+    25% {
+        transform: rotateZ(-10deg);
+    }
+
+    30% {
+        transform: rotateZ(6deg);
+    }
+
+    35% {
+        transform: rotateZ(-4deg);
+    }
+
+    40%,
+    100% {
+        transform: rotateZ(0);
+    }
 }

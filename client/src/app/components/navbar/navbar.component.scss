@@ -1,7 +1,8 @@
 .navbar-container {
     display: flex;
     align-items: center;
-    background-color: #cd729c;
+    justify-content: space-between;
+    background-color: #6490CB;
     margin-bottom: .5rem;
     position: fixed;
     gap: 1rem;
@@ -10,17 +11,22 @@
     width: 100%;
     z-index: 100;
 
-    a {
-        text-decoration: none;
+    .app-name {
+        a {
+            text-decoration: none;
 
-        h1 {
-            color: black;
+            h2 {
+                color: black;
+            }
         }
     }
 
-    .navbar-sub-container {
+
+
+    .bar-button-container {
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         .bar-button {
             width: 3rem;
@@ -102,6 +108,10 @@
         }
     }
 
+    .landscape {
+        display: none;
+    }
+
     .cart-button-div {
         width: 3rem;
         height: 3rem;
@@ -124,35 +134,17 @@
             height: 3rem;
             font-size: 2rem;
         }
-
-        .shopping-cart {
-            text-align: center;
-            color: white;
-            width: 1rem;
-            height: 1rem;
-            position: absolute;
-            top: 0;
-            right: 0;
-            border-radius: 50%;
-            background-color: #C1121F;
-            font-size: .75rem;
-        }
     }
 
     .userinfo-icon {
         width: 2rem;
         height: 2rem;
         border-radius: 50%;
-        background-color: #9183c0;
-        color: black;
+        background-color: #5a363a;
+        color: white;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    .loggedout {
-        width: 2rem;
-        height: 2rem;
     }
 }
 
@@ -165,6 +157,7 @@
     background-color: #f5f5f5;
     padding: 20px;
     transition: right 0.3s ease;
+    overflow: scroll;
 }
 
 .offcanvas.cart-open {
@@ -187,5 +180,94 @@
         color: #fff;
         border-radius: 50%;
         padding: 3px 6px;
+    }
+}
+
+@media(min-width: 800px) and (max-height: 331px) {
+    .navbar-container {
+        justify-content: space-between;
+
+        .bar-button-container {
+            display: none;
+        }
+
+        .user-icon-container {
+            display: none;
+        }
+
+        .app-name {
+            display: none;
+        }
+
+        .landscape {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+
+            .app-name-landscape {
+                a {
+                    text-decoration: none;
+
+                    h2 {
+                        color: black;
+                    }
+                }
+            }
+
+            .signUp-login-container {
+
+                .landscape-route {
+                    color: #fff;
+                    background-color: #5a363a;
+                    border-radius: 6px;
+                    padding: 0.2rem 0.4rem;
+                    box-shadow: -5px 5px 9px #000;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 599px) {
+    .navbar-container {
+        justify-content: space-between;
+
+        .bar-button-container {
+            display: none;
+        }
+
+        .user-icon-container {
+            display: none;
+        }
+
+        .app-name {
+            display: none;
+        }
+
+        .landscape {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+
+            .app-name-landscape {
+                a {
+                    text-decoration: none;
+
+                    h2 {
+                        color: black;
+                    }
+                }
+            }
+
+            .landscape-route {
+                color: #fff;
+                background-color: #5a363a;
+                border-radius: 6px;
+                padding: 0.2rem 0.4rem;
+                box-shadow: -5px 5px 9px #000;
+            }
+        }
     }
 }

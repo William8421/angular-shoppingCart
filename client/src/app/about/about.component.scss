@@ -1,0 +1,113 @@
+.about-container {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .about-app,
+    .about-project,
+    .technologies-used {
+        width: 390px;
+        height: 200px;
+        color: 5a363a;
+        margin: 1rem 0;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        P {
+            background-color: white;
+            padding: .5rem;
+            border-radius: 16px;
+            box-shadow: black 3px 3px 6px 0px inset,
+                #ffffff80 -3px -3px 6px 1px inset;
+        }
+    }
+
+    .about-app {
+        h2 {
+            background-color: white;
+            color: #3a3f98;
+            border-radius: 6px;
+            width: fit-content;
+            padding: .2rem;
+            box-shadow: black 3px 3px 6px 0px inset,
+                #ffffff80 -3px -3px 6px 1px inset;
+        }
+    }
+
+    .about-project {
+        h2 {
+            background-color: white;
+            color: #3a3f98;
+            border-radius: 6px;
+            width: fit-content;
+            padding: .2rem;
+            box-shadow: black 3px 3px 6px 0px inset,
+                #ffffff80 -3px -3px 6px 1px inset;
+        }
+    }
+
+    .technologies-used {
+        h2 {
+            background-color: white;
+            color: #3a3f98;
+            border-radius: 6px;
+            width: fit-content;
+            padding: .2rem;
+            box-shadow: black 3px 3px 6px 0px inset,
+                #ffffff80 -3px -3px 6px 1px inset;
+        }
+    }
+
+    .logos {
+        display: none;
+    }
+}
+
+@media(min-width: 700px) {
+    .about-container {
+        text-align: left;
+        align-items: flex-start;
+
+        .about-app,
+        .about-project,
+        .technologies-used {
+            align-items: flex-start;
+            width: 60%;
+            margin: 0;
+        }
+
+
+    }
+}
+
+@media(min-width: 900px) {
+    .about-container {
+
+        .about-app,
+        .about-project,
+        .technologies-used {
+            width: 50%;
+        }
+
+
+    }
+}
+
+@media(min-width: 1200px) {
+    .about-container {
+
+        .about-app,
+        .about-project,
+        .technologies-used {
+            width: 40%;
+        }
+
+
+    }
+}

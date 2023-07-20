@@ -1,6 +1,6 @@
 <div class="my-items-container">
-    <div class="my-items-sub-container" *ngFor="let item of userItems">
-        <div class="my-items-item-container">
+    <div class="my-items-sub-container">
+        <div class="my-items-item-container" *ngFor="let item of userItems">
             <img src={{item.imgUrl}} />
             <div class="my-items-name-price-container">
                 <h3>{{item.itemName}}</h3>
@@ -17,21 +17,24 @@
             </div>
             <!-- ================= -->
 
-
             <div class="delete-item-container">
                 <button (click)="openDeleteModal(item)" class="main-button">Delete item</button>
             </div>
+            <div class="delete-item-hidden-div" [class.delete-open]="openCloseDeleteModal"></div>
+            <div class="delete-modal" [class.delete-open]="openCloseDeleteModal">
+                <app-delete-item [selectedItem]="selectedItem" (closeModal)="openCloseDeleteModal = false"
+                    (itemsUpdate)="loadUserItems()"></app-delete-item>
+            </div>
         </div>
-        <div class="delete-item-hidden-div" [class.delete-open]="openCloseDeleteModal"></div>
-        <div class="delete-modal" [class.delete-open]="openCloseDeleteModal">
-            <app-delete-item [selectedItem]="selectedItem" (closeModal)="openCloseDeleteModal = false"
-                (itemsUpdate)="loadUserItems()"></app-delete-item>
-        </div>
+        <!-- ================== -->
     </div>
-    <!-- ================== -->
+    <div *ngIf="userItems.length === 0" class='no-items-yet'>
+        <h2>you don't have items yet</h2>
+    </div>
     <button class="main-button" (click)="openAddModal()">Add item</button>
     <div class="add-item-hidden-div" [class.add-item-open]="openCloseAddItemModal"></div>
     <div class="add-item-modal" [class.add-item-open]="openCloseAddItemModal">
         <app-add-item (closeModal)="openCloseAddItemModal = false" (itemsUpdate)="loadUserItems()"></app-add-item>
+
     </div>
 </div>

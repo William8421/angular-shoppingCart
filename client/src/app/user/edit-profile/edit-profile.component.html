@@ -1,28 +1,25 @@
-<div *ngFor="let userInfo of oldUserInfo">
-    <mat-card>
-        <mat-card-title>Edit Profile</mat-card-title>
-        <mat-card-content class="form-container">
-            <form class="example-form" #newData="ngForm" (submit)="editInfo(newData)">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Username</mat-label>
-                    <input matInput placeholder="{{oldUserInfo[0].username}}" name="username" type="text" ngModel>
-                </mat-form-field>
+<div class="edit-profile-container">
+    <div class="edit-profile-header">
+        <h2>Edit Profile</h2>
+        <button class="close-button" (click)="close()">X</button>
+    </div>
+    <form class="edit-profile-form" #newData="ngForm" (submit)="editInfo(newData)">
+        <div>
+            Username
+            <input type="text" name="username" placeholder="Username" ngModel />
+        </div>
+        <div>
+            First name
+            <input type="text" name="firstName" placeholder="First name" ngModel />
+        </div>
+        <div>
+            Last name
+            <input type="text" name="lastName" placeholder="Last name" ngModel />
+        </div>
+    </form>
+    <div class="edit-profile-buttons-container">
+        <button class="main-button" (click)="editInfo(newData)">Save</button>
+        <button class="cancel-button" (click)="close()">Cancel</button>
+    </div>
 
-                <mat-form-field class="example-full-width">
-                    <mat-label>First Name</mat-label>
-                    <input matInput placeholder="{{oldUserInfo[0].firstName}}" name="firstName" type="text" ngModel>
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width">
-                    <mat-label>Last Name</mat-label>
-                    <input matInput placeholder="{{oldUserInfo[0].lastName}}" name="lastName" type="text" ngModel>
-                </mat-form-field>
-
-                <div class="edit-profile-buttons-container">
-                    <button mat-raised-button color="primary" type="submit">Save</button>
-                    <button mat-raised-button color="warn" (click)="close()">Cancel</button>
-                </div>
-            </form>
-        </mat-card-content>
-    </mat-card>
 </div>

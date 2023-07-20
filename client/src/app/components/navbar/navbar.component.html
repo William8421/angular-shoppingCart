@@ -1,7 +1,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="navbar-container">
-  <div class="navbar-sub-container">
-    <div class='bar-button' (click)="Switcher()">
+  <div class="bar-button-container">
+    <div class='bar-button' (click)="toggleSwitcher()">
       <div class="bar top {{burger}}"></div>
       <div class="bar middle {{burger}}"></div>
       <div class="bar bottom {{burger}}"></div>
@@ -9,38 +9,63 @@
     <div class='pages'>
       <div class=" burger-menu {{(menu)}}">
         <div class='routes-container'>
-          <a routerLink=""><button (click)="Switcher()">Home</button></a>
-          <a routerLink="store"><button (click)="Switcher()">Store</button></a>
-          <a routerLink="about"><button (click)="Switcher()">About</button></a>
+          <a routerLink=""><button (click)="toggleSwitcher()">Home</button></a>
+          <a routerLink="store"><button (click)="toggleSwitcher()">Store</button></a>
+          <a routerLink="about"><button (click)="toggleSwitcher()">About</button></a>
         </div>
         <div *ngIf="!ngDoCheck()" class='signUp-login-container'>
-          <a routerLink="login"><button (click)="Switcher()">Login</button></a>
-          <a routerLink="signup"><button (click)="Switcher()">Sign Up</button></a>
+          <a routerLink="login"><button (click)="toggleSwitcher()">Login</button></a>
+          <a routerLink="signup"><button (click)="toggleSwitcher()">Sign Up</button></a>
         </div>
         <div *ngIf="ngDoCheck()" class='signUp-login-container'><button (click)="logOut()">Logout</button></div>
       </div>
     </div>
+    <div *ngIf="ngDoCheck()" class="user-icon-container">
+      <a routerLink="myprofile">
+        <div class="userinfo-icon">
+          {{userIcon}}
+        </div>
+      </a>
+    </div>
   </div>
-  <div *ngIf="ngDoCheck()">
-    <a routerLink="myprofile">
-      <div class="userinfo-icon">
-        {{userIcon}}
-      </div>
+  <div class="app-name">
+    <a routerLink="">
+      <h2>Shopping App</h2>
     </a>
   </div>
-  <div *ngIf="!ngDoCheck()">
-    <div class="loggedout"></div>
+  <div class="landscape">
+    <div class="app-name-landscape">
+      <a routerLink="">
+        <h2>Shopping App</h2>
+      </a>
+    </div>
+    <div *ngIf="ngDoCheck()" class="user-icon-container-landscape">
+      <a routerLink="myprofile">
+        <div class="userinfo-icon">
+          {{userIcon}}
+        </div>
+      </a>
+    </div>
+    <a routerLink=""><button class="landscape-route">Home</button></a>
+    <a routerLink="store"><button class="landscape-route">Store</button></a>
+    <a routerLink="about"><button class="landscape-route">About</button></a>
+    <div *ngIf="!ngDoCheck()" class='signUp-login-container'>
+      <a routerLink="login"><button class="landscape-route">Login</button></a>
+    </div>
+    <div *ngIf="!ngDoCheck()" class='signUp-login-container'>
+      <a routerLink="signup"><button class="landscape-route">Sign Up</button></a>
+    </div>
+    <div *ngIf="ngDoCheck()" class='signUp-login-container'>
+      <button class="landscape-route" (click)="logOut()">Logout</button>
+    </div>
   </div>
-  <a routerLink="">
-    <h1>Shopping App</h1>
-  </a>
   <div class="cart-button-div">
     <button (click)="toggleCart()" class="cart-button">
       <mat-icon class="cart-icon">shopping_cart</mat-icon>
       <span class="cart-quantity" *ngIf="cartQuantity > 0">{{ cartQuantity }}</span>
     </button>
     <div class="offcanvas" [class.cart-open]="showCart">
-      <app-cart (closeCart)="showCart = false"></app-cart>
+      <app-cart (closeCart)="showCart = false" (cartQuantity)="emptyCart()"></app-cart>
     </div>
   </div>
 </div>

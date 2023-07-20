@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserInfoProps, UserItemProps } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -7,65 +8,45 @@ import { Injectable } from '@angular/core';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  isLoggedIn(){
-    return JSON.parse(localStorage.getItem('user')!)
+  isLoggedIn() {
+    return JSON.parse(localStorage.getItem('user')!);
   }
 
-  sigIn(inputData: any): any {
-    return this.http.post(
-      'https://shopping-cart-server-chi.vercel.app/user/signin',
-      inputData
-    );
+  baseURL = 'https://shopping-cart-server-chi.vercel.app'
+
+  sigIn(inputData: any) {
+    return this.http.post(`${this.baseURL}/user/signin`, inputData);
   }
 
   register(inputData: any) {
-    return this.http.post(
-      'https://shopping-cart-server-chi.vercel.app/user/signup',
-      inputData
-    );
+    return this.http.post(`${this.baseURL}/user/signup`, inputData);
   }
 
   storeItems() {
-    return this.http.get(
-      'https://shopping-cart-server-chi.vercel.app/items/allitems'
-    );
+    return this.http.get( `${this.baseURL}/items/allitems`);
   }
 
-  getUserInfo(user: any) {
-    return this.http.post(
-      'https://shopping-cart-server-chi.vercel.app/user/getinfo', user
-    );
-    
+  getUserInfo(user: UserInfoProps) {
+    return this.http.post<UserInfoProps>(`${this.baseURL}/user/getinfo`, user);
   }
 
-  editUserInfo(newData: any){
-    return this.http.post(
-      'https://shopping-cart-server-chi.vercel.app/user/updateprofile', newData
-    )    
+  editUserInfo(newData: UserInfoProps) {
+    return this.http.post<UserInfoProps>(`${this.baseURL}/user/updateprofile`, newData);
   }
 
-  userItems(userId: number){
-    return this.http.post(
-      'https://shopping-cart-server-chi.vercel.app/items/useritems', userId
-    )
+  getUserItems(userId: number) {
+    return this.http.post(`${this.baseURL}/items/useritems`, userId);
   }
 
-  addItem(newItem: any){
-    return this.http.post(
-      'https://shopping-cart-server-chi.vercel.app/items/additems', newItem
-    )
+  addItem(newItem: any) {
+    return this.http.post(`${this.baseURL}/items/additems`, newItem);
   }
 
-  removeItem(item: any){
-    return this.http.post(
-      'https://shopping-cart-server-chi.vercel.app/items/removeitem', item
-    )
+  removeItem(item: any) {
+    return this.http.post(`${this.baseURL}/items/removeitem`, item);
   }
 
-  updateItem(item: any){
-    return this.http.post(
-      'https://shopping-cart-server-chi.vercel.app/items/updateitem', item
-    )
+  updateItem(item: UserItemProps) {
+    return this.http.post(`${this.baseURL}/items/updateitem`, item);
   }
-
 }

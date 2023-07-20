@@ -17,13 +17,13 @@
             padding: 1rem 0 1rem 0;
 
             img {
-                object-fit: cover;
+                object-fit: contain;
                 width: 250px;
                 height: 200px;
             }
 
             .item-info {
-                width: 100%;
+                width: 250px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -52,5 +52,92 @@
 
     img {
         width: 10%;
+    }
+}
+
+@media(min-width: 800px) and (max-height: 331px) {
+    .store-container {
+
+        .shopping-items {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            border: solid 1px red;
+
+            .item-container {
+                width: 250px;
+
+                img {
+                    width: 200px;
+                    height: 150px;
+                }
+
+                .item-info {
+                    width: 200px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 599px) {
+    .store-container {
+
+        .shopping-items {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+            .item-container {
+
+                width: 250px;
+
+                img {
+                    width: 200px;
+                    height: 150px;
+                }
+
+                .item-info {
+                    width: 200px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 900px) {
+    .store-container {
+
+        .shopping-items {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+
+            .item-container {
+
+                width: 400px;
+
+                img {
+                    width: 300px;
+                    height: 200px;
+                }
+
+                .item-info {
+                    width: 300px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1250px) {
+    .store-container {
+
+        .shopping-items {
+
+            .item-container {
+                background-color: rgb(249, 241, 241);
+            }
+        }
     }
 }

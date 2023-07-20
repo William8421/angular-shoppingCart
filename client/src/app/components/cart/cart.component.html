@@ -4,28 +4,38 @@
         <button class="close-cart-button" (click)="toggleCart()">X</button>
     </div>
     <div class="cart-items-container">
+        <div *ngIf="cartItems.length === 0">
+            <h3>Your cart is empty</h3>
+            <a routerLink="store">
+                <div (click)="toggleCart()">
+                    <h3>Start shopping</h3>
+                </div>
+            </a>
+        </div>
         <div *ngFor="let item of cartItems">
             <div class="item-container">
-                <img src="{{ item.imgUrl }}" />
+                <img [src]="item.imgUrl" style="width: 200px;" />
                 <div class="name-quantity">
-                    <div class="cart-item-name">
-                        {{ item.itemName }}
-                    </div>
+                    <div class="cart-item-name">{{ item.itemName }}</div>
                     <div class="cart-item-quantity">
-                        <button class="increase-decrease-buttons" (click)="decreaseQuantity(item)">-</button>
+                        <button class="increase-decrease-buttons" (click)="updateCartItem(item, -1)">-</button>
                         {{ item.quantity }}
-                        <button class="increase-decrease-buttons" (click)="increaseQuantity(item)">+</button>
+                        <button class="increase-decrease-buttons" (click)="updateCartItem(item, 1)">+</button>
                     </div>
                 </div>
                 <div class="price-total">
-                    <div class="cart-item-price">
-                        {{ item.price | currency: "EUR"}} €
-                    </div>
-                    <div class="cart-item-total">
-                        {{item.price * item.quantity | currency: "EUR"}} €
-                    </div>
+                    <div class="cart-item-price">{{ item.price | currency: 'EUR' }} €</div>
+                    <div class="cart-item-total">{{ item.price * item.quantity | currency: 'EUR' }} €</div>
                 </div>
                 <button class="main-button" (click)="removeFromCart(item)">Remove</button>
             </div>
         </div>
     </div>
+    <div class="cart-total" *ngIf="cartItems.length !== 0">
+        <h3>total: {{total() | currency: "EUR"}}</h3>
+        <div>
+            <button (click)="emptyCart()" class="main-button">Empty cart</button>
+            <button (click)="checkout()" class="main-button">Checkout</button>
+        </div>
+    </div>
+</div>

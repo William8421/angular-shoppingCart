@@ -1,83 +1,65 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
-export interface Product{
-  itemName: string;
-  price: number;
-  imgUrl: string;
-  itemId: number;
-  owner: number;
-  quantity: number
-}
+import { CartItemProps, UserLocalStorage } from '../models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private cartItemsSubject = new BehaviorSubject<any[]>([]);
+  private cartItemsSubject = new BehaviorSubject<CartItemProps[]>([]);
   cartItems = this.cartItemsSubject.asObservable();
   private cartQuantitySubject = new BehaviorSubject<number>(0);
   cartQuantity = this.cartQuantitySubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
-  isLoggedIn(){
-    return JSON.parse(localStorage.getItem('user')!)
+  isLoggedIn(): UserLocalStorage {
+    return JSON.parse(localStorage.getItem('user')!);
   }
 
-  addToCart(product: Product): void {
+  addToCart(cartItem: CartItemProps): void {
     const items = this.cartItemsSubject.value;
-    const existingItem = items.find((item) => item.itemId === product.itemId);
+    const existingItem = items.find((item) => item.itemId === cartItem.itemId);
+    
 
     if (existingItem) {
       existingItem.quantity++;
     } else {
-      product.quantity = 1;
-      items.push(product);
+      cartItem.quantity = 1;
+      items.push(cartItem);
     }
 
-    this.cartItemsSubject.next([...items]);
-    this.updateCartQuantity();
+    this.updateCart(items);
   }
 
-  removeFromCart(product: Product): void {
+  removeFromCart(cartItem: CartItemProps): void {
     const items = this.cartItemsSubject.value;
-    const index = items.findIndex((item) => item.itemId === product.itemId);
+    const index = items.findIndex((item) => item.itemId === cartItem.itemId);
 
     if (index !== -1) {
       items.splice(index, 1);
-      this.cartItemsSubject.next([...items]);
-      this.updateCartQuantity();
+      this.updateCart(items);
     }
   }
 
-  updateCartItem(product: Product): void {
+  updateCartItem(cartItem: CartItemProps): void {
     const items = this.cartItemsSubject.value;
-    const index = items.findIndex((item) => item.itemId === product.itemId);
+    const index = items.findIndex((item) => item.itemId === cartItem.itemId);
 
     if (index !== -1) {
-      items[index].quantity = product.quantity;
-      this.cartItemsSubject.next([...items]);
-      this.updateCartQuantity();
+      items[index].quantity = cartItem.quantity;
+      this.updateCart(items);
     }
   }
 
-  private updateCartQuantity(): void {
-    const items = this.cartItemsSubject.value;
-    let quantity = 0;
+  private updateCart(items: CartItemProps[]): void {
+    this.cartItemsSubject.next([...items]);
+    this.updateCartQuantity(items);
+  }
 
-    for (const item of items) {
-      quantity += item.quantity;
-    }
-
+  private updateCartQuantity(items: CartItemProps[]): void {
+    const quantity = items.reduce((total, item) => total + item.quantity, 0);
     this.cartQuantitySubject.next(quantity);
   }
-  storeItems() {
-    return this.http.get(
-      'https://shopping-cart-server-chi.vercel.app/items/allitems'
-    );
-  }
-
-  
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../service/user.service';
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -11,29 +12,29 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  response: any;
-
   hide = true;
+  errorMessage: string = ''
 
   register(signUpData: any) {
     if (signUpData.valid) {
       this.service.register(signUpData.value).subscribe({
         next: (item: any) => {
-          this.response = item;
-          if (this.response.token) {
-            localStorage.setItem('user', JSON.stringify({token: this.response.token, id: this.response.user.id, username: this.response.user.username}));
-            this.route.navigate(['myprofile']);
-          }
+          const { token, user } = item;
+          const userStorage = {
+            token: token,
+            id: user.id,
+            username: user.username,
+          };
+          localStorage.setItem('user', JSON.stringify(userStorage));
+          this.route.navigate(['myprofile']);
         },
-        error(Err) {
-          console.log(Err.error.msg);
-          if (Err.error.msg) {
-            alert(Err.error.msg);
-          } else {
-            alert(Err.error.errors[0].msg);
-          }
-        },
-      });
+        error: (error: any) => {
+          console.log(error.error.msg);
+          this.errorMessage =
+            error.error.msg || error.error.errors[0].msg;
+          
+        }
+    });
     }
   }
 
