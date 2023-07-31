@@ -1,9 +1,9 @@
-<div class="edit-profile-container">
-    <div class="edit-profile-header">
+<div class="modal-container">
+    <div class="modal-header">
         <h2>Edit Profile</h2>
         <button class="close-button" (click)="close()">X</button>
     </div>
-    <form class="edit-profile-form" #newData="ngForm" (submit)="editInfo(newData)">
+    <form class="modal-form" #newData="ngForm" (submit)="editInfo(newData)">
         <div>
             Username
             <input type="text" name="username" placeholder="Username" ngModel />
@@ -17,9 +17,10 @@
             <input type="text" name="lastName" placeholder="Last name" ngModel />
         </div>
     </form>
-    <div class="edit-profile-buttons-container">
-        <button class="main-button" (click)="editInfo(newData)">Save</button>
-        <button class="cancel-button" (click)="close()">Cancel</button>
+    <div class="modal-footer">
+        <div class="modal-buttons-container">
+            <button class="main-button" (click)="editInfo(newData)">Save</button>
+            <button class="cancel-button" (click)="close()">Cancel</button>
+        </div>
     </div>
-
 </div>

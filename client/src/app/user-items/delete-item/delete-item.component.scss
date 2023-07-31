@@ -1,14 +1,16 @@
+@import "../../../_Variables.scss";
+
 .delete-item-container {
     width: 380px;
     height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background-color: #d7b3d4;
+    background-color: $SeaSalt;
     border-radius: 16px;
 
     .delete-item-header {
-        background-color: #6490CB;
+        background-color: $WatermelonRed;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -23,8 +25,8 @@
     .delete-item-sub-container {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
         align-items: center;
+        justify-content: space-around;
         height: 100px;
 
 

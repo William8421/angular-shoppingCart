@@ -1,9 +1,9 @@
-<div class="update-item-container">
-    <div class='update-item-header'>
+<div class="modal-container">
+    <div class='modal-header'>
         <h2>Update Item</h2>
         <button class='close-button' (click)="close()">X</button>
     </div>
-    <form #selectedItemUpdate="ngForm" (submit)="updateItem(selectedItemUpdate)" class="update-item-form">
+    <form #selectedItemUpdate="ngForm" (submit)="updateItem(selectedItemUpdate)" class="modal-form">
         <div>
             New name
             <input type="text" name="updateItemName" placeholder="Item name" ngModel />
@@ -17,13 +17,16 @@
             <input type="file" name="imgUrl" placeholder="Choose file" (change)="imageHandler($event)" ngModel />
         </div>
     </form>
-    <div class="update-item-button-container">
-        <div *ngIf="uploaded===''">
-            <button (click)=" uploadImage()" class="upload-button">Upload</button>
+    <div class="modal-footer">
+
+        <div class="modal-buttons-container">
+            <div *ngIf="imgSelected" class="upload-button-container">
+                <button (click)=" uploadImage()" class="upload-button">Upload</button>
+            </div>
+            <div>
+                <button (click)="updateItem(selectedItemUpdate)" class="main-button">Save</button>
+            </div>
+            <button (click)="close()" class="cancel-button">Cancel</button>
         </div>
-        <div>
-            <button (click)="updateItem(selectedItemUpdate)" class="main-button">Save</button>
-        </div>
-        <button (click)="close()" class="cancel-button">Cancel</button>
     </div>
 </div>

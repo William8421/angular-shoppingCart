@@ -32,8 +32,8 @@
         </div>
     </div>
     <div class="cart-total" *ngIf="cartItems.length !== 0">
-        <h3>total: {{total() | currency: "EUR"}}</h3>
-        <div>
+        <h3>Total: {{total() | currency: "EUR"}}</h3>
+        <div class="total-buttons">
             <button (click)="emptyCart()" class="main-button">Empty cart</button>
             <button (click)="checkout()" class="main-button">Checkout</button>
         </div>

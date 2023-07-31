@@ -34,29 +34,34 @@
     </a>
   </div>
   <div class="landscape">
-    <div class="app-name-landscape">
-      <a routerLink="">
-        <h2>Shopping App</h2>
-      </a>
+    <div class="name-user-container">
+
+      <div class="app-name-landscape">
+        <a routerLink="">
+          <h2>Shopping App</h2>
+        </a>
+      </div>
+      <div *ngIf="ngDoCheck()" class="user-icon-container-landscape">
+        <a routerLink="myprofile">
+          <div class="userinfo-icon">
+            {{userIcon}}
+          </div>
+        </a>
+      </div>
     </div>
-    <div *ngIf="ngDoCheck()" class="user-icon-container-landscape">
-      <a routerLink="myprofile">
-        <div class="userinfo-icon">
-          {{userIcon}}
-        </div>
-      </a>
-    </div>
-    <a routerLink=""><button class="landscape-route">Home</button></a>
-    <a routerLink="store"><button class="landscape-route">Store</button></a>
-    <a routerLink="about"><button class="landscape-route">About</button></a>
-    <div *ngIf="!ngDoCheck()" class='signUp-login-container'>
-      <a routerLink="login"><button class="landscape-route">Login</button></a>
-    </div>
-    <div *ngIf="!ngDoCheck()" class='signUp-login-container'>
-      <a routerLink="signup"><button class="landscape-route">Sign Up</button></a>
-    </div>
-    <div *ngIf="ngDoCheck()" class='signUp-login-container'>
-      <button class="landscape-route" (click)="logOut()">Logout</button>
+    <div class="landscape-routes-container">
+      <a routerLink="" class="landscape-route">Home</a>
+      <a routerLink="store" class="landscape-route">Store</a>
+      <a routerLink="about" class="landscape-route">About</a>
+      <div *ngIf="!ngDoCheck()" class='signUp-login-container'>
+        <a routerLink="login" class="landscape-route">Login</a>
+      </div>
+      <div *ngIf="!ngDoCheck()" class='signUp-login-container'>
+        <a routerLink="signup" class="landscape-route">Sign Up</a>
+      </div>
+      <div *ngIf="ngDoCheck()" class='signUp-login-container' (click)="logOut()">
+        <a routerLink="" class="landscape-route">Logout</a>
+      </div>
     </div>
   </div>
   <div class="cart-button-div">

@@ -39,7 +39,6 @@ export class NavbarComponent implements DoCheck, OnInit {
   logOut(): void {
     localStorage.removeItem('user');
     this.toggleSwitcher();
-    this.route.navigate(['']);
   }
 
   toggleCart(): void {

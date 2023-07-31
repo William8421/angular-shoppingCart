@@ -1,10 +1,10 @@
-<div class="add-item-container">
+<div class="modal-container">
 
-    <div class='add-item-header'>
+    <div class='modal-header'>
         <h2>Add Item</h2>
         <button class='close-button' (click)="close()">X</button>
     </div>
-    <form #newItem="ngForm" (submit)="addItem(newItem)" class="add-item-form">
+    <form #newItem="ngForm" (submit)="addItem(newItem)" class="modal-form">
         <div>
             Name
             <input type="text" name="itemName" placeholder="Name" required="" ngModel />
@@ -19,11 +19,11 @@
                 (change)="imageHandler($event)" ngModel />
         </div>
     </form>
-    <div class="add-item-footer">
+    <div class="modal-footer">
         <div *ngIf="imgSelected" class="upload-button-container">
             <button (click)="uploadImage()" class="upload-button">Upload</button>
         </div>
-        <div class="add-item-buttons-container">
+        <div class="modal-buttons-container">
             <div *ngIf="uploaded">
                 <button (click)="addItem(newItem)" class="main-button">Save</button>
             </div>
