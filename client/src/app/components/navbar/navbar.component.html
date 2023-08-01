@@ -6,6 +6,7 @@
       <div class="bar middle {{burger}}"></div>
       <div class="bar bottom {{burger}}"></div>
     </div>
+    <div class="menu-hidden-div {{menu}}" (click)="toggleSwitcher()"></div>
     <div class='pages'>
       <div class=" burger-menu {{(menu)}}">
         <div class='routes-container'>
@@ -15,7 +16,7 @@
         </div>
         <div *ngIf="!ngDoCheck()" class='signUp-login-container'>
           <a routerLink="login"><button (click)="toggleSwitcher()">Login</button></a>
-          <a routerLink="signup"><button (click)="toggleSwitcher()">Sign Up</button></a>
+          <a routerLink="signup"><button (click)="toggleSwitcher()">Sign up</button></a>
         </div>
         <div *ngIf="ngDoCheck()" class='signUp-login-container'><button (click)="logOut()">Logout</button></div>
       </div>
@@ -57,7 +58,7 @@
         <a routerLink="login" class="landscape-route">Login</a>
       </div>
       <div *ngIf="!ngDoCheck()" class='signUp-login-container'>
-        <a routerLink="signup" class="landscape-route">Sign Up</a>
+        <a routerLink="signup" class="landscape-route">Sign up</a>
       </div>
       <div *ngIf="ngDoCheck()" class='signUp-login-container' (click)="logOut()">
         <a routerLink="" class="landscape-route">Logout</a>
